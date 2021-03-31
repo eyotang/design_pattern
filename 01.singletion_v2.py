@@ -16,15 +16,20 @@ def singleton_decorator(cls, *args, **kwargs):
 
 
 @singleton_decorator
-class MyBeautifulGirl(object):
+class Tony(object):
     """使用单例装饰器修饰一个类"""
 
-    def __init__(self, name):
-        self.__name = name
-        print("遇见" + name + "，我一见钟情！ ")
+    def __init__(self):
+        self.__my_girl = "Jenny"
+
+    def meet(self, name):
+        if name == self.__my_girl:
+            print("遇见" + name + "，我一见钟情！")
+        else:
+            print("遇见" + name + "，我置若罔闻！")
 
     def show_my_heart(self):
-        print(self.__name + "就是我心中的唯一！")
+        print(self.__my_girl + "就是我心中的唯一！")
 
 
 def on_signal_int(signum, frame):
@@ -39,11 +44,17 @@ def register_signal():
 def main():
     register_signal()
 
-    jenny = MyBeautifulGirl("Jenny")
-    jenny.show_my_heart()
-    kimi = MyBeautifulGirl("Kimi")
-    kimi.show_my_heart()
-    print("id(jenny):", id(jenny), " id(kimi):", id(kimi))
+    # 24岁的Tony
+    tony_24 = Tony()
+    tony_24.meet("Jenny")
+    tony_24.show_my_heart()
+
+    # 26岁的Tony
+    tony_26 = Tony()
+    tony_26.meet("Kimi")
+    tony_26.show_my_heart()
+
+    print("id(tony_24):", id(tony_24), " id(tony_26):", id(tony_26))
 
     return 0
 
